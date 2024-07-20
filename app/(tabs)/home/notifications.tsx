@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal } from 'react-native'
 import Request from '@/components/Request'
+import josh from '../../../assets/images/josh.png'
+import joyang from '../../../assets/images/joyang.png'
+import praneer from '../../../assets/images/praneer.png'
+
 
 const notifications = [
-  { id: '1', title: 'Notification 1' },
-  { id: '2', title: 'Notification 2' },
-  { id: '3', title: 'Notification 3' },
+  { id: '1', profilePic: josh, title: 'PengusJams', subtitle: "Producer SongWriter", pills: ['Guitar', 'Fl studio', 'Mixing'], notes: ['Likes R&B music', 'Likes long walks on the beach', 'Fan of Dean, KayTranda']},
+  { id: '2',  profilePic: joyang, title: 'Joyang', subtitle: "Singer Producer", pills: ['Guitar', 'Piano', 'Logic'], notes: ['Plays Tennis', 'Loves jazz and jamming', 'Based in San Francisco']},
+  { id: '3', profilePic: praneer, title: 'Lil Boat', subtitle: "Rapper", pills: ['DJ', 'Producing', 'Rapper'], notes: ['Likes R&B music', 'Likes long walks on the beach', 'Fan of Dean, KayTranda']},
 ]
 
 const NotificationsScreen: React.FC = () => {

@@ -10,6 +10,11 @@ interface RequestProps {
   notification: {
     id: string
     title: string
+    subtitle: string
+    pills: string[]
+    notes: string[],
+    // I want to send a image here as a prop too
+    profilePic: Image
   }
   onClose: () => void
 }
@@ -29,24 +34,24 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
 
       <View style={styles.profileSection}>
         <View style={styles.profileContainer}>
-          <Image source={tmp} style={styles.profilePicture} />
+          <Image source={notification.profilePic} style={styles.profilePicture} />
         </View>
         <View style={styles.descriptionContainer}>
-          <Text style={styles.profileName}>PengusJams</Text>
-          <Text style={styles.profileDescription}>Singer songwriter </Text>
+          <Text style={styles.profileName}>{notification.title}</Text>
+          <Text style={styles.profileDescription}>{notification.subtitle}</Text>
           <View style={styles.skillsContainer}>
-            {skills.map((skill, index) => (
+            {notification.pills.map((skill, index) => (
               <View key={index} style={styles.skillPill}>
                 <Text style={styles.skillText}>{skill}</Text>
               </View>
             ))}
           </View>
           <View style={styles.descriptionBox}>
-            <Text style={styles.descriptionText}>
-              {'\u2022'} Experienced using DAWs like FL Studio, Ableton Live, and Logic Pro X{'\n'}
-              {'\u2022'} I like the post mixing/mastering process{'\n'}
-              {'\u2022'} Can sing too
-            </Text>
+            {notification.notes.map((note, index) => (
+              <Text key={index} style={styles.descriptionText}>
+                {note}
+              </Text>
+            ))}
           </View>
           <Text style={styles.headerText}>Let's Jam, Fam?</Text>
           <View style={styles.buttonContainer}>
