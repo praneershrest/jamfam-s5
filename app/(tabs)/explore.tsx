@@ -1,12 +1,12 @@
 /** @format */
 
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Request from '@/components/Request'
 
-export default function TabTwoScreen() {
+export default function ExploreScreen() {
   return (
     <View>
-      <Request />
+      <Text>This is the feed Page</Text>
     </View>
   )
 }

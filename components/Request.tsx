@@ -6,7 +6,15 @@ import tmp from '../assets/images/josh.png'
 
 const { width, height } = Dimensions.get('window')
 
-const Request: React.FC = () => {
+interface RequestProps {
+  notification: {
+    id: string
+    title: string
+  }
+  onClose: () => void
+}
+
+const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
   const skills = ['JavaScript', 'React Native', 'Node.js']
 
   return (
@@ -45,7 +53,7 @@ const Request: React.FC = () => {
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Yes 🤝</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={onClose}>
               <Text style={styles.buttonText}>No 🗑️</Text>
             </TouchableOpacity>
           </View>
@@ -79,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   profileSection: {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
   },
   profileName: {
     fontSize: 20,
