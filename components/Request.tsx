@@ -12,16 +12,13 @@ interface RequestProps {
     title: string
     subtitle: string
     pills: string[]
-    notes: string[],
-    // I want to send a image here as a prop too
+    notes: string[]
     profilePic: Image
   }
   onClose: () => void
 }
 
 const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
-  const skills = ['JavaScript', 'React Native', 'Node.js']
-
   return (
     <View style={styles.container}>
       <Video
