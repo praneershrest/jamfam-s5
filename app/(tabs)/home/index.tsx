@@ -7,9 +7,7 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/home/notifications')}>
-        <Text style={styles.buttonText}>Go to Notifications</Text>
-      </TouchableOpacity>
+      <Text style={styles.buttonText}>This is the home screen</Text>
     </View>
   )
 }
