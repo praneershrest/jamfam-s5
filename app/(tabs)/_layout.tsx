@@ -26,8 +26,8 @@ const TabLayout = () => {
           headerRight: () => (
             // TODO: Replace with a custom component
             <>
-              <Pressable onPress={() => router.push('settings')}>
-                <MaterialIcons size={TEMPORARY_CONSTANTS.tabBarIconSize} name="settings" />
+              <Pressable onPress={() => router.push('notifications')}>
+                <MaterialIcons size={TEMPORARY_CONSTANTS.tabBarIconSize} name="notifications" />
               </Pressable>
             </>
           ),
