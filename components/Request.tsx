@@ -1,7 +1,7 @@
 // components/MessageInput.tsx
 import React, { useState } from 'react'
 import { View, Dimensions, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
-import { Video } from 'expo-av'
+import { Video, ResizeMode } from 'expo-av'
 import tmp from '../assets/images/josh.png'
 
 const { width, height } = Dimensions.get('window')
@@ -24,7 +24,7 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
       <Video
         source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
         style={styles.video}
-        resizeMode="cover"
+        resizeMode={ResizeMode.COVER}
         shouldPlay
         isLooping
       />
@@ -43,6 +43,7 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
               </View>
             ))}
           </View>
+
           <View style={styles.descriptionBox}>
             {notification.notes.map((note, index) => (
               <Text key={index} style={styles.descriptionText}>
@@ -50,6 +51,21 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
               </Text>
             ))}
           </View>
+          <View style={styles.descriptionBox}>
+            {notification.notes.map((note, index) => (
+              <Text key={index} style={styles.descriptionText}>
+                {note}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.descriptionBox}>
+            {notification.notes.map((note, index) => (
+              <Text key={index} style={styles.descriptionText}>
+                {note}
+              </Text>
+            ))}
+          </View>
+
           <Text style={styles.headerText}>Let's Jam, Fam?</Text>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button}>
@@ -68,6 +84,7 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    backgroundColor: 'black',
   },
   video: {
     width: width,
