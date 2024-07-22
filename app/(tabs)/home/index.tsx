@@ -3,8 +3,6 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { useRouter } from 'expo-router'
 
 const HomeScreen: React.FC = () => {
-  const router = useRouter()
-
   return (
     <View style={styles.container}>
       <Text style={styles.buttonText}>This is the home screen</Text>

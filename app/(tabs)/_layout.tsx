@@ -13,7 +13,6 @@ const TEMPORARY_CONSTANTS = {
 }
 
 const TabLayout = () => {
-  const router = useRouter()
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: TEMPORARY_CONSTANTS.tabBarActiveTintColor }}>
       <Tabs.Screen name="home" options={{ title: 'Home', headerShown: false }} />

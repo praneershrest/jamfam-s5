@@ -4,6 +4,7 @@ import Request from '@/components/Request'
 import josh from '../../../assets/images/josh.png'
 import joyang from '../../../assets/images/joyang.png'
 import praneer from '../../../assets/images/praneer.png'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const notifications = [
   {
@@ -11,6 +12,7 @@ const notifications = [
     profilePic: josh,
     title: 'PengusJams',
     subtitle: 'Producer SongWriter',
+    projectName: 'Banana Name',
     pills: ['Guitar', 'Fl studio', 'Mixing'],
     notes: ['Likes R&B music', 'Likes long walks on the beach', 'Fan of Dean, KayTranda'],
   },
@@ -19,6 +21,7 @@ const notifications = [
     profilePic: joyang,
     title: 'Joyang',
     subtitle: 'Singer Producer',
+    projectName: 'Banana Name',
     pills: ['Guitar', 'Piano', 'Logic'],
     notes: ['Plays Tennis', 'Loves jazz and jamming', 'Based in San Francisco'],
   },
@@ -27,6 +30,7 @@ const notifications = [
     profilePic: praneer,
     title: 'Lil Boat',
     subtitle: 'Rapper',
+    projectName: 'Broken Dreams',
     pills: ['DJ', 'Producing', 'Rapper'],
     notes: ['Likes R&B music', 'Likes long walks on the beach', 'Fan of Dean, KayTranda'],
   },
@@ -63,7 +67,9 @@ const NotificationsScreen: React.FC = () => {
         visible={modalVisible}
         onRequestClose={closeModal}>
         {selectedNotification && (
-          <Request notification={selectedNotification} onClose={closeModal} />
+          <GestureHandlerRootView style={styles.container}>
+            <Request notification={selectedNotification} onClose={closeModal} />
+          </GestureHandlerRootView>
         )}
       </Modal>
     </View>
