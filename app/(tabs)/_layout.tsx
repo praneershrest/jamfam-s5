@@ -1,5 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons'
-import { Tabs, useRouter } from 'expo-router'
+import { Tabs, useRouter, Link } from 'expo-router'
 import { Pressable } from 'react-native'
 
 /**
@@ -16,23 +16,7 @@ const TabLayout = () => {
   const router = useRouter()
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: TEMPORARY_CONSTANTS.tabBarActiveTintColor }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons size={TEMPORARY_CONSTANTS.tabBarIconSize} name="home" color={color} />
-          ),
-          headerRight: () => (
-            // TODO: Replace with a custom component
-            <>
-              <Pressable onPress={() => router.push('notifications')}>
-                <MaterialIcons size={TEMPORARY_CONSTANTS.tabBarIconSize} name="notifications" />
-              </Pressable>
-            </>
-          ),
-        }}
-      />
+      <Tabs.Screen name="home" options={{ title: 'Home', headerShown: false }} />
       <Tabs.Screen
         name="create"
         options={{
