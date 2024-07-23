@@ -14,6 +14,7 @@ interface RequestProps {
     pills: string[]
     notes: string[]
     profilePic: any // Change this to ImageSourcePropType if using TypeScript
+    profileVid: any
   }
   onClose: () => void
 }
@@ -46,7 +47,7 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
     <PanGestureHandler onGestureEvent={handleGestureEvent} onHandlerStateChange={handleStateChange}>
       <Animated.View style={[styles.container, { transform: [{ translateX }] }]}>
         <Video
-          source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+          source={notification.profileVid ? notification.profileVid : { uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
           style={styles.video}
           resizeMode={ResizeMode.COVER}
           shouldPlay
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     left: 20,
-    zIndex: 10,
+    zIndex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 10,
     borderRadius: 5,
