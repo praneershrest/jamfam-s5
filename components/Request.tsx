@@ -2,12 +2,13 @@ import React, { useRef } from 'react'
 import { View, Dimensions, StyleSheet, Image, Text, TouchableOpacity, Animated } from 'react-native'
 import { Video, ResizeMode } from 'expo-av'
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
+import { useRouter } from 'expo-router'; 
 
 const { width, height } = Dimensions.get('window')
 
 interface RequestProps {
   notification: {
-    id: string
+    id: number
     title: string
     subtitle: string
     projectName: string
@@ -21,6 +22,15 @@ interface RequestProps {
 
 const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
   const translateX = useRef(new Animated.Value(0)).current
+  const videoRef = useRef<Video>(null);
+
+  const router = useRouter(); // Initialize useRouter
+
+  const handleNameClick = () => {
+    videoRef.current?.pauseAsync();
+    router.push(`/home/profile/${notification.id}`);
+    onClose()
+  };
 
   const handleGestureEvent = Animated.event([{ nativeEvent: { translationX: translateX } }], {
     useNativeDriver: true,
@@ -52,6 +62,7 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
           resizeMode={ResizeMode.COVER}
           shouldPlay
           isLooping
+          ref={videoRef}
         />
 
         <TouchableOpacity style={styles.backButton} onPress={onClose}>
@@ -70,7 +81,9 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
           </View>
 
           <View style={styles.descriptionContainer}>
-            <Text style={styles.profileName}>{notification.title}</Text>
+            <TouchableOpacity onPress={handleNameClick}>
+              <Text style={styles.profileName}>{notification.title}</Text>
+            </TouchableOpacity>
             <Text style={styles.profileDescription}>{notification.subtitle}</Text>
             <View style={styles.skillsContainer}>
               {notification.pills.map((skill, index) => (
