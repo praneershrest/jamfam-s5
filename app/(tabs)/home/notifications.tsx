@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, Image } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import Request from '@/components/Request'
 import josh from '../../../assets/images/josh.png'
 import joyang from '../../../assets/images/joyang.png'
 import praneer from '../../../assets/images/praneer.png'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import joyangVideo from '../../../assets/videos/joyang.mp4'
 import idol from  '../../../assets/videos/idol.mp4'
 import rapbeat from '../../../assets/videos/rapbeat.mp4'
@@ -43,44 +42,34 @@ const notifications = [
 ]
 
 const NotificationsScreen: React.FC = () => {
-  const [modalVisible, setModalVisible] = useState(false)
   const [selectedNotification, setSelectedNotification] = useState<any>(null)
 
-  const openModal = (notification: any) => {
+  const openRequest = (notification: any) => {
     setSelectedNotification(notification)
-    setModalVisible(true)
   }
 
-  const closeModal = () => {
-    setModalVisible(false)
+  const closeRequest = () => {
     setSelectedNotification(null)
   }
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={notifications}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.item} onPress={() => openModal(item)}>
-            <Image source={item.profilePic} style={styles.profilePic} />
-            <Text style={styles.message}>
-              <Text style={styles.boldMessage}>{item.title}</Text> wants to collab on {item.projectName}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={closeModal}>
-        {selectedNotification && (
-          <GestureHandlerRootView style={styles.container}>
-            <Request notification={selectedNotification} onClose={closeModal} />
-          </GestureHandlerRootView>
-        )}
-      </Modal>
+      {selectedNotification ? (
+        <Request notification={selectedNotification} onClose={closeRequest} />
+      ) : (
+        <FlatList
+          data={notifications}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.item} onPress={() => openRequest(item)}>
+              <Image source={item.profilePic} style={styles.profilePic} />
+              <Text style={styles.message}>
+                <Text style={styles.boldMessage}>{item.title}</Text> wants to collab on {item.projectName}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   )
 }
