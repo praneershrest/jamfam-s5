@@ -24,6 +24,7 @@ const HomeLayout: React.FC = () => {
         }}
       />
       <Stack.Screen name="notifications" options={{ title: 'Notifications' }} />
+      <Stack.Screen name="profile" options={{ title: 'Profile' }} />
     </Stack>
   )
 }

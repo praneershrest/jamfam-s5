@@ -5,14 +5,14 @@ import josh from '../../../assets/images/josh.png'
 import joyang from '../../../assets/images/joyang.png'
 import praneer from '../../../assets/images/praneer.png'
 import joyangVideo from '../../../assets/videos/joyang.mp4'
-import idol from  '../../../assets/videos/idol.mp4'
+import idol from '../../../assets/videos/idol.mp4'
 import rapbeat from '../../../assets/videos/rapbeat.mp4'
 
 const notifications = [
   {
     id: '1',
     profilePic: josh,
-    profileVid: idol,
+    profileVid: rapbeat,
     title: 'PengusJams',
     subtitle: 'Producer SongWriter',
     projectName: 'Banana Name',
@@ -32,7 +32,7 @@ const notifications = [
   {
     id: '3',
     profilePic: praneer,
-    profileVid: rapbeat,
+    profileVid: idol,
     title: 'Lil Boat',
     subtitle: 'Rapper',
     projectName: 'Broken Dreams',
@@ -64,7 +64,8 @@ const NotificationsScreen: React.FC = () => {
             <TouchableOpacity style={styles.item} onPress={() => openRequest(item)}>
               <Image source={item.profilePic} style={styles.profilePic} />
               <Text style={styles.message}>
-                <Text style={styles.boldMessage}>{item.title}</Text> wants to collab on {item.projectName}
+                <Text style={styles.boldMessage}>{item.title}</Text> wants to collab on{' '}
+                {item.projectName}
               </Text>
             </TouchableOpacity>
           )}
