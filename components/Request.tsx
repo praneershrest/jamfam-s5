@@ -1,6 +1,14 @@
 // components/MessageInput.tsx
 import React, { useState } from 'react'
-import { View, Dimensions, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Dimensions,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+  ImageSourcePropType,
+} from 'react-native'
 import { Video, ResizeMode } from 'expo-av'
 import tmp from '../assets/images/josh.png'
 
@@ -13,7 +21,7 @@ interface RequestProps {
     subtitle: string
     pills: string[]
     notes: string[]
-    profilePic: Image
+    profilePic: ImageSourcePropType
   }
   onClose: () => void
 }
