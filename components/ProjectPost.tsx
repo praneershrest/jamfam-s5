@@ -91,7 +91,7 @@ const ProjectPost = ({ project, activeProjectId }: Project) => {
             <Video
               ref={videoRef}
               className="h-full w-screen"
-              source={{ uri: project.video }}
+              source={project.video}
               resizeMode={ResizeMode.COVER}
               onPlaybackStatusUpdate={setPlaybackStatus}
               isLooping

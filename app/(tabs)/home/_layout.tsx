@@ -24,6 +24,12 @@ const HomeLayout: React.FC = () => {
         }}
       />
       <Stack.Screen name="notifications" options={{ title: 'Notifications' }} />
+      <Stack.Screen
+        name="profile/[id]"
+        options={{
+          title: '', // This will hide the header for the Profile screen
+        }}
+      />
     </Stack>
   )
 }
