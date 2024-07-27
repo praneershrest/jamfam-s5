@@ -5,11 +5,14 @@ import josh from '@/assets/images/josh.png'
 import joyang from '@/assets/images/joyang.png'
 import praneer from '@/assets/images/praneer.png'
 import { useRef, useState } from 'react'
+import project2 from '@/assets/videos/project2.mp4'
+import project1 from '@/assets/videos/project1.mp4'
+import joyang2 from '@/assets/videos/joyang2.mp4'
 
 const projects = [
   {
     id: '1',
-    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    video: project1,
     pills: ['label1.1', 'label1.2', 'label1.3'],
     title: 'Title 1',
     description: 'Project Description 1',
@@ -20,7 +23,7 @@ const projects = [
   },
   {
     id: '2',
-    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    video: joyang2,
     pills: ['label2.1', 'label2.2', 'label2.3'],
     title: 'Title 2',
     description: 'Project Description 2',
@@ -31,7 +34,7 @@ const projects = [
   },
   {
     id: '3',
-    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    video: project2,
     pills: ['label3.1', 'label3.2', 'label3.3'],
     title: 'Title 3',
     description: 'Project Description 3',
