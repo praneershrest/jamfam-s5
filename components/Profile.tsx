@@ -25,6 +25,10 @@ import vinly3 from '../assets/images/vinly3.png'
 import wolf from '../assets/images/wolf.png'
 import me_img from '../assets/images/me_img.png'
 import eleven_cover from '../assets/images/eleven_cover.png'
+import tape1 from '../assets/videos/tape1.mp4'
+import tape2 from '../assets/videos/tape2.mov'
+import project2 from '../assets/videos/project2.mp4'
+import project1 from '../assets/videos/project1.mp4'
 
 const { width, height } = Dimensions.get('window')
 
@@ -40,14 +44,16 @@ const profileInfo = {
       {
         id: '1',
         title: 'Snippet #1',
-        snippet: idol,
+        snippet: tape1,
+        fullProject: project1,
         projectImg: vinly,
         projectImgBig: eleven_cover,
       },
       {
         id: '2',
         title: 'Snippet #2',
-        snippet: joyangVideo,
+        snippet: tape2,
+        fullProject: project2,
         projectImg: vinly2,
         projectImgBig: wolf,
       },
@@ -55,6 +61,7 @@ const profileInfo = {
         id: '3',
         title: 'Snippet #3',
         snippet: joyangVideo,
+        fullProject: project2,
         projectImg: vinly3,
         projectImgBig: me_img,
       },
@@ -169,7 +176,7 @@ const Profile: React.FC<ProfileProps> = ({ id }) => {
           <Text style={styles.headerText}>Completed Projects</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {selectedProfile.projects.map((project: any) => (
-              <TouchableOpacity onPress={() => openModal(project.snippet)}>
+              <TouchableOpacity onPress={() => openModal(project.fullProject)}>
                 <Image
                   source={project.projectImgBig}
                   style={styles.projectSnippetVideo}
@@ -233,7 +240,7 @@ const styles = StyleSheet.create({
   },
   video: {
     width: width,
-    height: height / 2.5,
+    height: height / 3,
   },
   profileContainer: {
     flexDirection: 'row',
@@ -260,6 +267,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#666',
     textAlign: 'center',
+    marginBottom: 5,
   },
   bioContainer: {
     padding: 20,
@@ -298,6 +306,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     marginVertical: 10,
+    marginTop: 20,
     marginLeft: 15,
   },
   projectContainer: {
@@ -308,12 +317,14 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
+    margin: 10,
   },
   projectTitle: {
-    marginTop: 5,
+    marginTop: 10,
     fontSize: 14,
     color: '#333',
     textAlign: 'center',
+    marginBottom: 5,
   },
   favoriteGenresContainer: {
     padding: 20,
@@ -360,11 +371,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   projectSnippet: {
-    marginRight: 10,
+    margin: 10,
   },
   projectSnippetVideo: {
     width: width / 3 - 10,
     height: width / 3 - 10,
+    margin: 10,
   },
   completedProjectsContainer: {
     padding: 10,

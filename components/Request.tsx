@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { View, Dimensions, StyleSheet, Image, Text, TouchableOpacity, Animated } from 'react-native'
 import { Video, ResizeMode } from 'expo-av'
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
-import { useRouter } from 'expo-router'; 
+import { useRouter } from 'expo-router'
 
 const { width, height } = Dimensions.get('window')
 
@@ -13,24 +13,25 @@ interface RequestProps {
     subtitle: string
     projectName: string
     pills: string[]
-    notes: string[]
+    notes: string
     profilePic: any // Change this to ImageSourcePropType if using TypeScript
     profileVid: any
   }
   onClose: () => void
+  onConnected: () => void
 }
 
-const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
+const Request: React.FC<RequestProps> = ({ notification, onClose, onConnected }) => {
   const translateX = useRef(new Animated.Value(0)).current
-  const videoRef = useRef<Video>(null);
+  const videoRef = useRef<Video>(null)
 
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter() // Initialize useRouter
 
   const handleNameClick = () => {
-    videoRef.current?.pauseAsync();
-    router.push(`/home/profile/${notification.id}`);
+    videoRef.current?.pauseAsync()
+    router.push(`/home/profile/${notification.id}`)
     onClose()
-  };
+  }
 
   const handleGestureEvent = Animated.event([{ nativeEvent: { translationX: translateX } }], {
     useNativeDriver: true,
@@ -57,7 +58,11 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
     <PanGestureHandler onGestureEvent={handleGestureEvent} onHandlerStateChange={handleStateChange}>
       <Animated.View style={[styles.container, { transform: [{ translateX }] }]}>
         <Video
-          source={notification.profileVid ? notification.profileVid : { uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+          source={
+            notification.profileVid
+              ? notification.profileVid
+              : { uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }
+          }
           style={styles.video}
           resizeMode={ResizeMode.COVER}
           shouldPlay
@@ -71,7 +76,9 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
 
         <View style={styles.profileSection}>
           <View style={styles.profileContainer}>
-            <Image source={notification.profilePic} style={styles.profilePicture} />
+            <TouchableOpacity onPress={handleNameClick}>
+              <Image source={notification.profilePic} style={styles.profilePicture} />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.subHeaderContainer}>
@@ -81,9 +88,7 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
           </View>
 
           <View style={styles.descriptionContainer}>
-            <TouchableOpacity onPress={handleNameClick}>
-              <Text style={styles.profileName}>{notification.title}</Text>
-            </TouchableOpacity>
+            <Text style={styles.profileName}>{notification.title}</Text>
             <Text style={styles.profileDescription}>{notification.subtitle}</Text>
             <View style={styles.skillsContainer}>
               {notification.pills.map((skill, index) => (
@@ -94,15 +99,11 @@ const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
             </View>
 
             <View style={styles.descriptionBox}>
-              {notification.notes.map((note, index) => (
-                <Text key={index} style={styles.descriptionText}>
-                  {note}
-                </Text>
-              ))}
+              <Text style={styles.descriptionText}>{notification.notes}</Text>
             </View>
             <Text style={styles.headerText}>Let's Jam, Fam?</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} onPress={onConnected}>
                 <Text style={styles.buttonText}>Yes 🤝</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={onClose}>
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   },
   video: {
     width: width,
-    height: height / 2.5,
+    height: height / 4.5,
   },
   backButton: {
     position: 'absolute',
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -120,
+    marginTop: -250,
   },
   subHeaderContainer: {
     marginTop: 10,
