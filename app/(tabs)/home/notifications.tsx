@@ -1,5 +1,14 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native'
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Alert,
+  Modal,
+} from 'react-native'
 import Request from '@/components/Request'
 import josh from '../../../assets/images/josh.png'
 import joyang from '../../../assets/images/joyang.png'

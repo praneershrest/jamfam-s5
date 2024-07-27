@@ -1,13 +1,30 @@
+<<<<<<< HEAD
 import React, { useRef } from 'react'
 import { View, Dimensions, StyleSheet, Image, Text, TouchableOpacity, Animated } from 'react-native'
 import { Video, ResizeMode } from 'expo-av'
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import { useRouter } from 'expo-router'
+=======
+// components/MessageInput.tsx
+import React, { useState } from 'react'
+import {
+  View,
+  Dimensions,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+  ImageSourcePropType,
+} from 'react-native'
+import { Video, ResizeMode } from 'expo-av'
+import tmp from '../assets/images/josh.png'
+>>>>>>> main
 
 const { width, height } = Dimensions.get('window')
 
 interface RequestProps {
   notification: {
+<<<<<<< HEAD
     id: number
     title: string
     subtitle: string
@@ -114,21 +131,98 @@ const Request: React.FC<RequestProps> = ({ notification, onClose, onConnected })
         </View>
       </Animated.View>
     </PanGestureHandler>
+=======
+    id: string
+    title: string
+    subtitle: string
+    pills: string[]
+    notes: string[]
+    profilePic: ImageSourcePropType
+  }
+  onClose: () => void
+}
+
+const Request: React.FC<RequestProps> = ({ notification, onClose }) => {
+  return (
+    <View style={styles.container}>
+      <Video
+        source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+        style={styles.video}
+        resizeMode={ResizeMode.COVER}
+        shouldPlay
+        isLooping
+      />
+
+      <View style={styles.profileSection}>
+        <View style={styles.profileContainer}>
+          <Image source={notification.profilePic} style={styles.profilePicture} />
+        </View>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.profileName}>{notification.title}</Text>
+          <Text style={styles.profileDescription}>{notification.subtitle}</Text>
+          <View style={styles.skillsContainer}>
+            {notification.pills.map((skill, index) => (
+              <View key={index} style={styles.skillPill}>
+                <Text style={styles.skillText}>{skill}</Text>
+              </View>
+            ))}
+          </View>
+
+          <View style={styles.descriptionBox}>
+            {notification.notes.map((note, index) => (
+              <Text key={index} style={styles.descriptionText}>
+                {note}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.descriptionBox}>
+            {notification.notes.map((note, index) => (
+              <Text key={index} style={styles.descriptionText}>
+                {note}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.descriptionBox}>
+            {notification.notes.map((note, index) => (
+              <Text key={index} style={styles.descriptionText}>
+                {note}
+              </Text>
+            ))}
+          </View>
+
+          <Text style={styles.headerText}>Let's Jam, Fam?</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Yes 🤝</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={onClose}>
+              <Text style={styles.buttonText}>No 🗑️</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </View>
+>>>>>>> main
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+<<<<<<< HEAD
     flex: 1,
     position: 'absolute',
     top: 0,
     left: 0,
     width: width,
     height: height,
+=======
+    flexDirection: 'column',
+>>>>>>> main
     backgroundColor: 'black',
   },
   video: {
     width: width,
+<<<<<<< HEAD
     height: height / 4.5,
   },
   backButton: {
@@ -143,11 +237,15 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: 'white',
     fontSize: 16,
+=======
+    height: height / 2.5,
+>>>>>>> main
   },
   profileContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+<<<<<<< HEAD
     marginTop: -250,
   },
   subHeaderContainer: {
@@ -171,6 +269,12 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     padding: 10,
+=======
+    marginTop: -40,
+  },
+  descriptionContainer: {
+    padding: 20,
+>>>>>>> main
     alignItems: 'center',
   },
   profilePicture: {
@@ -180,9 +284,12 @@ const styles = StyleSheet.create({
   },
   profileSection: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
+<<<<<<< HEAD
     flex: 1,
     width: '100%',
     justifyContent: 'center',
+=======
+>>>>>>> main
   },
   profileName: {
     fontSize: 20,
