@@ -1,10 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons'
-<<<<<<< HEAD
-import { Tabs, useRouter, Link } from 'expo-router'
-import { Pressable } from 'react-native'
-=======
 import { Tabs } from 'expo-router'
->>>>>>> main
 
 /**
  * TODO
