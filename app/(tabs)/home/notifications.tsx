@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -18,8 +18,8 @@ import idol from '../../../assets/videos/idol.mp4'
 import rapbeat from '../../../assets/videos/rapbeat.mp4'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-const notifications = [
-  {
+const notifications = {
+  1: {
     id: '1',
     profilePic: josh,
     profileVid: rapbeat,
@@ -30,7 +30,7 @@ const notifications = [
     notes:
       "Hi there! I thought your project has a lot of potential to be great, I would love to connect! Let's make some Jams?",
   },
-  {
+  2: {
     id: '2',
     profilePic: joyang,
     profileVid: joyangVideo,
@@ -41,7 +41,7 @@ const notifications = [
     notes:
       "Hi there! I thought your project has a lot of potential to be great, I would love to connect! Let's make some Jams!",
   },
-  {
+  3: {
     id: '3',
     profilePic: praneer,
     profileVid: idol,
@@ -52,23 +52,30 @@ const notifications = [
     notes:
       "Hi there! I thought your project has a lot of potential to be great, I would love to connect! Let's make some Jams!",
   },
-]
+}
 
-const NotificationsScreen: React.FC = () => {
+const NotificationsScreen = () => {
   const [selectedNotification, setSelectedNotification] = useState<any>(null)
+  const [notificationsState, setNotificationsState] = useState<any>(notifications)
 
-  const openRequest = (notification: any) => {
-    setSelectedNotification(notification)
+  const openRequest = (notificationId: string) => {
+    setSelectedNotification(notificationsState[notificationId])
   }
 
   const closeRequest = () => {
     setSelectedNotification(null)
   }
 
-  const onConnected = () => {
-    Alert.alert('Success', 'You successfully connected with PengusJams', [{ text: 'OK' }])
-    // delete the first element off the stack
-    notifications.shift()
+  const onConnected = (isAccept: Boolean) => {
+    if (!isAccept) {
+      Alert.alert('Fail', 'The person is no bueno', [{ text: 'OK' }])
+    } else {
+      Alert.alert('Success', 'You successfully connected with PengusJams', [{ text: 'OK' }])
+    }
+
+    const updatedNotifications = { ...notificationsState }
+    delete updatedNotifications[selectedNotification.id]
+    setNotificationsState(updatedNotifications)
     closeRequest()
   }
 
@@ -84,10 +91,13 @@ const NotificationsScreen: React.FC = () => {
         </GestureHandlerRootView>
       ) : (
         <FlatList
-          data={notifications}
+          data={Object.keys(notificationsState).map((key) => ({
+            id: key,
+            ...notificationsState[key],
+          }))}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.item} onPress={() => openRequest(item)}>
+            <TouchableOpacity style={styles.item} onPress={() => openRequest(item.id)}>
               <Image source={item.profilePic} style={styles.profilePic} />
               <Text style={styles.message}>
                 <Text style={styles.boldMessage}>{item.title}</Text> wants to collab on{' '}

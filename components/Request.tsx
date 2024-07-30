@@ -18,7 +18,7 @@ interface RequestProps {
     profileVid: any
   }
   onClose: () => void
-  onConnected: () => void
+  onConnected: (isAccept: Boolean) => void
 }
 
 const Request: React.FC<RequestProps> = ({ notification, onClose, onConnected }) => {
@@ -103,10 +103,18 @@ const Request: React.FC<RequestProps> = ({ notification, onClose, onConnected })
             </View>
             <Text style={styles.headerText}>Let's Jam, Fam?</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.button} onPress={onConnected}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                  onConnected(true)
+                }}>
                 <Text style={styles.buttonText}>Yes 🤝</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={onClose}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                  onConnected(false)
+                }}>
                 <Text style={styles.buttonText}>No 🗑️</Text>
               </TouchableOpacity>
             </View>
