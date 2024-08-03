@@ -5,8 +5,8 @@ import josh from '@/assets/images/josh.png'
 import joyang from '@/assets/images/joyang.png'
 import praneer from '@/assets/images/praneer.png'
 import { useRef, useState } from 'react'
-import project2 from '@/assets/videos/project2.mp4'
-import project1 from '@/assets/videos/project1.mp4'
+import project2 from '@/assets/videos/tape2.mov'
+import project1 from '@/assets/videos/tape1.mp4'
 import joyang2 from '@/assets/videos/joyang2.mp4'
 
 const projects = [
